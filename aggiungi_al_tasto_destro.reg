@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Classes\*\shell\convertPDF]
+@="Converti in PDF"
+"Icon"="shell32.dll,275"
+"AppliesTo"="System.FileExtension:=.doc OR System.FileExtension:=.docx OR System.FileExtension:=.rtf OR System.FileExtension:=.odt OR System.FileExtension:=.xls OR System.FileExtension:=.xlsx OR System.FileExtension:=.xlsm OR System.FileExtension:=.csv OR System.FileExtension:=.ppt OR System.FileExtension:=.pptx"
+
+[HKEY_CURRENT_USER\Software\Classes\*\shell\convertPDF\command]
+@="\"C:\\Users\\Enrico\\AppData\\Local\\Programs\\Python\\Python312\\pythonw.exe\" \"C:\\Users\\Enrico\\Documents\\Python\\converPDF\\convertPDF.py\" \"%1\""
