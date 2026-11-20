@@ -37,15 +37,14 @@ WORD = {".doc", ".docx", ".rtf", ".odt"}
 EXCEL = {".xls", ".xlsx", ".xlsm", ".csv"}
 PPT = {".ppt", ".pptx"}
 
-def adatta_tabelle_word_com(doc, forza_landscape=False, auto_landscape_colonne=5):
+def adatta_tabelle_word_com(doc, forza_landscape=False):
     wdAutoFitWindow = 2
     wdAlignRowCenter = 1
     wdOrientLandscape = 1
 
-    ha_tabelle_larghe = False
-
     for table in doc.Tables:
         try:
+            # Adatta la larghezza della tabella ai margini del foglio verticale
             table.AutoFitBehavior(wdAutoFitWindow)
         except Exception:
             pass
@@ -65,13 +64,8 @@ def adatta_tabelle_word_com(doc, forza_landscape=False, auto_landscape_colonne=5
         except Exception:
             pass
 
-        try:
-            if auto_landscape_colonne and table.Columns.Count >= auto_landscape_colonne:
-                ha_tabelle_larghe = True
-        except Exception:
-            pass
-
-    if forza_landscape or ha_tabelle_larghe:
+    # Ruota in orizzontale SOLO se espressamente richiesto (es. flag --landscape)
+    if forza_landscape:
         try:
             doc.PageSetup.Orientation = wdOrientLandscape
             for table in doc.Tables:
